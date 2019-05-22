@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #chart {
+            width: 900px;
+            height: 600px;
+            margin: 40px auto;
+            border: 1px solid rgb(238, 232, 232);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="chart"></div>
+
+<script src="./echarts.js"></script>
+<script>
+    const chartNode = document.getElementById('chart')
+    const chartInstance = echarts.init(chartNode)
+
+    const option = {
+        title: {
+            text: 'title'
+        },
+        tooltip: {
+
+        },
+        legend: {
+            
+        },
+        xAxis: {
+            data: []
+        },
+        yAxis: {
+
+        },
+        series: [
+            {
+                type: 'bar'
+            }
+        ]
+    }
+
+    chartInstance.setOption(option)
+</script>
+</body>
+
+</html>

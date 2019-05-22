@@ -1,0 +1,10 @@
+### Echarts -- 基础教程
+
+# Echarts -- 绘制图表的基本步骤
+    1. 'echarts.init(node)' # 初始化一个echarts实例
+    2. 'setOption({})' # 指定配置项
+
+# Echarts -- 版本构建
+
+# Echarts -- 配置样式
+    

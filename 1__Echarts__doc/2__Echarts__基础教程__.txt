@@ -1,10 +1,53 @@
 ### Echarts -- 基础教程
 
+————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 # Echarts -- 绘制图表的基本步骤
+    1. 'html中准备一个具有宽高的DOM元素' # 为Echarts准备一个DOM容器, 容器需要具有 宽度/高度, 并且可见
     1. 'echarts.init(node)' # 初始化一个echarts实例
-    2. 'setOption({})' # 指定配置项
+    2. 'setOption({})' # 指定配置项/数据 -> 绘制图表
 
+
+————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 # Echarts -- 版本构建
+    # Echarts库的分类 (根据体积大小)
+    1. 完全版 - 体积最大, 包含所有的图表和组件 (echarts/echarts.all.js)
+    2. 常用版 - 体积适中, 包含常见的图表和组件 (echarts/echarts.common.js)
+    3. 精简版 - 体积较小, 仅包含最常用的图表和组件 (echarts/echarts.simple.js)
 
+    # 自定义构建Echarts版本库的方法 (对第三库的体积要求最小化, 只选择项目中用到的图表和组件)
+    1. Echarts官网提供的'在线自定义构建'
+    2. Echarts提供的'脚本构建'
+    3. '构建工具构建'(webpack/rollup)
+        # 注意: 引用 echarts/lib/** 还是 echarts/src/**
+            # echarts/lib/** -- CommonJS模块
+            # echarts/src/** -- ES模块
+            1. 项目中如果直接引用echarts里的一些模块并自行构建, 应该使用 echarts/lib/** 路径, 而不可使用 echarts/src/**
+            2. 当使用构建脚本(echarts/build/build.js)打包 bundle, 那么两者可以选其一使用(不可混用), 使用 echarts/src/**可以获得稍微小一些的文件体积
+
+    # 在webpack中引入Echarts
+        1. 全部引入 (得到的是加载了全部图表和组件的Echarts包)
+            # var echarts = require('echarts')
+            # import echarts from 'echarts'
+        2. 按需引入
+            # CommonJS
+            # var echarts = require('echarts/lib/echarts')  // 引入ECharts主模块
+            # require('echarts/lib/chart/bar')              // 引入柱状图
+            # require('echarts/lib/component/tooltip')      // 引入提示框组件
+
+            # ES
+            # import echarts from 'echarts/lib/echarts'
+            # import 'echarts/lib/chart/bar'
+            # import 'echarts/lib/component/tooltip'
+
+        3. 按需引入 (babel-plugin-equire) # https://juejin.im/entry/5a1c1bc9f265da430d57bd3f
+
+
+————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 # Echarts -- 配置样式
+    1. Echarts提供了丰富的配置项, 可以通过'全局/系列/数据'三个层级来设置图形的样式
+        (1) 全局样式 # 在setOption({})中指定样式                            如: color/backgroundColor/textStyle/animation
+        (2) 系列样式 # 在series数组下每个对象中指定样式                      如: label/itemStyle/lineStyle/areaStyle/emphasis
+        (3) 数据样式 # 在series数组下每个对象中的data数据内容数组中指定样式    如: label/itemStyle/tooltip/emphasis
+            注意: data数据内容数组中的值不仅可以是数组, 也可以设置成对象(包含: 名称/样式/tooltip)
+            
     

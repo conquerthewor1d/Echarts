@@ -43,12 +43,21 @@
 
 
 ————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-# Echarts -- 配置样式
-    1. Echarts提供了丰富的配置项, 可以通过'全局/系列/数据'三个层级来设置图形的样式
+# Echarts -- 样式
+    1. Echarts提供了丰富的配置项, 可以通过'全局/系列/数据'三个层级来设'配置样式'
         (1) 全局样式 # 在setOption({})中指定样式                            如: color/backgroundColor/textStyle/animation
         (2) 系列样式 # 在series数组下每个对象中指定样式                      如: label/itemStyle/lineStyle/areaStyle/emphasis
         (3) 数据样式 # 在series数组下每个对象中的data数据内容数组中指定样式    如: label/itemStyle/tooltip/emphasis
             注意: data数据内容数组中的值不仅可以是数组, 也可以设置成对象(包含: 名称/样式/tooltip)
+
+    2. 组件/系列 - 定位方式
+        (1) left/right/top/bottom/width/height 定位
+        (2) center/radius 定位
+            # 值的类型 
+            1.绝对值    # 单位px, Number书写形式(不用写单位) -- {left: 23, height: 400}
+            2.百分比    # 百分比, String书写形式 -- {right: '30%', bottom: '40%'}
+            3.位置描述  # 水平居中(left:'center') / 垂直居中(top: 'middle')
+            
 
 
 ————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -70,5 +79,34 @@
 
 ————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 # Echarts -- 移动端自适应 (Echarts的媒体查询)
+    # 格式
+    var option = {
+        baseOption: {
+            title: {},
+            legend: {},
+            series: []
+        },
+        media: [ # 定义媒体查询 (query: 发生条件 / option: 对应的option)
+            {
+                query: {},
+                option: {}
+            },
+            {
+                query: {},
+                option: {}
+            },
+            {
+                query: {},
+                option: {}
+            }
+        ]
+    }
+    # query支持3个属性 1.width 2.height 3.aspectRatio(长宽比) 
+    # 每个属性可以添加 min/max前缀 
+        # 例: minWidth: 200 -- 表示查询条件为 宽度大于等于200px时添加对应的option
+        # 例: maxHeight: 200 -- 表示查询条件为 高度小于等于200px时添加对应的option
 
+    # 注意: 
+    # 1. 可以有多个query同时被满足, option会合并, 遇见相同的属性后定义的优先级更高
+    # 2. media中如果不写query则为默认项 -- 集其他条件都不满足时采用这个option
     
